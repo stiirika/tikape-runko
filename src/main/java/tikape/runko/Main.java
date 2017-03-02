@@ -34,7 +34,7 @@ public class Main {
         Database database = new Database(jdbcOsoite);
 
         // Database database = new Database("jdbc:sqlite:sovellus.db");
-        database.init();
+       // database.init();
 
         get("/", (req, res) -> {
             HashMap map = new HashMap<>();
