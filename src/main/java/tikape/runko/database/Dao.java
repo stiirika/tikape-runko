@@ -11,9 +11,11 @@ public interface Dao<T, K> {
 
     void delete(K key) throws SQLException;
 
-    int selectId(K key1, K key2) throws SQLException;
+    int selectId() throws SQLException;
     
-    int CountAll(K key1, K key2) throws SQLException;    
-
+    int CountAll(K key1, K key2) throws SQLException; 
+    
+    String selectDate(K key1, K key2) throws SQLException; 
+    
     void AddOne(T key) throws SQLException;
 }

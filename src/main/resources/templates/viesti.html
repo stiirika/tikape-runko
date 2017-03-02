@@ -7,10 +7,9 @@
     </head>
 
     <body>
-        <h1>Astmapalsta</h1>
+        <h1>Viestit</h1>
 
-        <span>Astmapalstalla astmaa sairastavat ja heid&auml;n l&auml;heisens&auml; voivat vaihtaa sairauteen liittyvi&auml; ajatuksia ja kokemuksia ymp&auml;ri vuorokauden.
-            Keskustelua voivat lukea kaikki, mutta kommentointi ja uusien keskustelujen aloittaminen edellytt&auml;v&auml;t kirjautumista.</span>
+        <span>Astmapalstan viestien kommentoiminen vaatii tunnistautumisen.</span>
         <ol>
             <li th:each="alkio: ${viesti}">
                 <a th:text="${alkio.Sisalto}">sisalto</a> Käyttäjältä:<span style="color:red;" th:text="${alkio.Tunnus}">tunnus</span> Viesti saapunut:<span th:text="${alkio.PvmAika}">aika</span>

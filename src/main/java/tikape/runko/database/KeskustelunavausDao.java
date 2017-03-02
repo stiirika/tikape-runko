@@ -45,7 +45,7 @@ public class KeskustelunavausDao implements Dao<Keskustelunavaus, Integer> {
     public List<Keskustelunavaus> findAll(Integer key) throws SQLException {
 
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Keskustelunavaus WHERE AiheId = ? ORDER BY AiheId DESC LIMIT 10");
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Keskustelunavaus WHERE AiheId = ? ORDER BY KeskusteluId ASC LIMIT 10");
         stmt.setObject(1, key);
 
         ResultSet rs = stmt.executeQuery();
@@ -90,10 +90,9 @@ public class KeskustelunavausDao implements Dao<Keskustelunavaus, Integer> {
     }
 
     @Override
-    public int selectId(Integer key1, Integer key2) throws SQLException {
+    public int selectId() throws SQLException {
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT MAX(KeskusteluId) AS arvo FROM Keskustelunavaus WHERE AiheId = ?");
-        stmt.setObject(1, key1);
+        PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(KeskusteluId) AS arvo FROM Keskustelunavaus");
         
         ResultSet rs = stmt.executeQuery();
         Integer id = rs.getInt("arvo");
@@ -112,6 +111,11 @@ public class KeskustelunavausDao implements Dao<Keskustelunavaus, Integer> {
 
     @Override
     public int CountAll(Integer key1, Integer key2) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String selectDate(Integer key1, Integer key2) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

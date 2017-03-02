@@ -10,7 +10,7 @@
         <h1>Astmapalsta</h1>
 
         <span>Astmapalstalla astmaa sairastavat ja heid&auml;n l&auml;heisens&auml; voivat vaihtaa sairauteen liittyvi&auml; ajatuksia ja kokemuksia ymp&auml;ri vuorokauden.
-            Keskustelua voivat lukea kaikki, mutta kommentointi ja uusien keskustelujen aloittaminen edellytt&auml;v&auml;t kirjautumista.</span>
+            Keskustelua voivat lukea kaikki.</span>
         <ol>
             <li th:each="alkio: ${aiheet}">
                 <a th:href="@{~/aihe/{id}(id=${alkio.AiheId})}" th:text="${alkio.Aihe}">name</a> <span th:text="${alkio.PvmAika}">aika</span>

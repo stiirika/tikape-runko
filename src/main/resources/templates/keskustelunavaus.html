@@ -7,10 +7,9 @@
     </head>
 
     <body>
-        <h1>Astmapalsta</h1>
+        <h1>Keskustelunavaukset</h1>
 
-        <span>Astmapalstalla astmaa sairastavat ja heid&auml;n l&auml;heisens&auml; voivat vaihtaa sairauteen liittyvi&auml; ajatuksia ja kokemuksia ymp&auml;ri vuorokauden.
-            Keskustelua voivat lukea kaikki, mutta kommentointi ja uusien keskustelujen aloittaminen edellytt&auml;v&auml;t kirjautumista.</span>
+        <span>Astmapalstalla voi kommentoida olemassa olevia keskustelunavauksia tai avata uusia keskusteluita. Kommentoiminen ja uusien avaaminen vaatii tunnistautumisen.</span>
         <ol>
             <li th:each="alkio: ${keskustelunavaus}">
                 <a th:href="@{~/avaus/{id1}/{id2}(id1=${alkio.AiheId}, id2=${alkio.KeskusteluId})}" th:text="${alkio.Otsikko}">otsikko</a> Viestien lukumäärä: <span style="color:red;" th:text="${lkm}">lkm</span> Uusin viesti saapunut:<span th:text="${date}">aika</span>

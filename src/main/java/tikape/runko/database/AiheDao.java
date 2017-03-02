@@ -87,8 +87,14 @@ public class AiheDao implements Dao<Aihe, Integer> {
     }
 
     @Override
-    public int selectId(Integer key1, Integer key2) throws SQLException {
+    public int selectId() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public String selectDate(Integer key1, Integer key2) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
 }

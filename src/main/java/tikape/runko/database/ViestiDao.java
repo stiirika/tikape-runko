@@ -114,14 +114,14 @@ public class ViestiDao implements Dao<Viesti, Integer> {
         return id;
     }
 
-      public int selectDate(Integer key1, Integer key2) throws SQLException {
+      public String selectDate(Integer key1, Integer key2) throws SQLException {
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT PvmAika AS arvo FROM Viesti WHERE AiheId = ? AND KeskusteluId = ? AND ViestiId = MAX(ViestiId)");
+        PreparedStatement stmt = connection.prepareStatement("SELECT PvmAika AS arvo FROM Viesti WHERE AiheId = ? AND KeskusteluId = ? ORDER BY PvmAika DESC LIMIT 1");
         stmt.setObject(1, key1);
         stmt.setObject(2, key2);
         
         ResultSet rs = stmt.executeQuery();
-        Integer id = rs.getInt("arvo");
+        String id = rs.getString("arvo");
 
         rs.close();
         stmt.close();
@@ -147,11 +147,9 @@ public class ViestiDao implements Dao<Viesti, Integer> {
 
     }
 
-    public int selectId(Integer key1, Integer key2) throws SQLException {
+    public int selectId() throws SQLException {
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT MAX(ViestiId) AS arvo FROM Viesti WHERE AiheId = ? AND KeskusteluId = ?");
-        stmt.setObject(1, key1);
-        stmt.setObject(2, key2);
+        PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(ViestiId) AS arvo FROM Viesti");
         
         ResultSet rs = stmt.executeQuery();
         Integer id = rs.getInt("arvo");
