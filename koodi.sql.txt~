@@ -1,0 +1,22 @@
+CREATE TABLE Aihe (AiheId integer PRIMARY KEY NOT NULL, Aihe varchar(20) NOT NULL, Kuvaus varchar(50), PvmAika varchar(50));
+INSERT INTO Aihe (AiheId, Aihe, Kuvaus,PvmAika) VALUES (1,'Astma ja hoidot','Astmaan liittyviä hoitoja','2009-10-02 16:52:30');
+INSERT INTO Aihe (AiheId, Aihe, Kuvaus,PvmAika) VALUES (2,'Lapset ja astma','Lasten astmaan liittyvät oireet ja hoidot','2010-01-02 12:06:30');
+INSERT INTO Aihe (AiheId, Aihe, Kuvaus,PvmAika) VALUES (3,'Sisäilmaongelmat','Sisäilmaongelmien yhteys astmaan','2010-07-18 09:10:35');
+INSERT INTO Aihe (AiheId, Aihe, Kuvaus,PvmAika) VALUES (4, 'Astma ja lääkkeet','Astman hoitoon käytettävät lääkkeet','2010-11-30 19:10:00');
+CREATE TABLE Keskustelunavaus (KeskusteluId integer PRIMARY KEY, AiheId integer, Tunnus varchar(30), Otsikko varchar(50), PvmAika varchar(50) NOT NULL, FOREIGN KEY(AiheId) REFERENCES Aihe(AiheId),FOREIGN KEY(Tunnus) REFERENCES Kayttaja(Tunnus));
+INSERT INTO Keskustelunavaus (KeskusteluId, AiheId, Tunnus,Otsikko,PvmAika) VALUES (1, 1,'Anna','Astmaan vaihtoehtoista hoitoa','2009-11-12 20:52:30');
+INSERT INTO Keskustelunavaus (KeskusteluId, AiheId, Tunnus,Otsikko,PvmAika) VALUES (2, 1,'Maarit','Suolahoidot','2010-03-28 23:54:10');
+INSERT INTO Keskustelunavaus (KeskusteluId, AiheId, Tunnus,Otsikko,PvmAika) VALUES (3, 1,'Minna','Vaihtoehtohoitoja astman hoitoon','2010-04-14 20:38:19');
+INSERT INTO Keskustelunavaus (KeskusteluId, AiheId, Tunnus,Otsikko,PvmAika) VALUES (4, 1,'Anneli','Vyöhyketerapia ja homeopatia','2010-10-25 19:04:10');
+INSERT INTO Keskustelunavaus (KeskusteluId, AiheId, Tunnus,Otsikko,PvmAika) VALUES (5, 2,'Aaron','Pitkäaikainen limaisuus','2011-03-18 15:40:50');
+INSERT INTO Keskustelunavaus (KeskusteluId, AiheId, Tunnus,Otsikko,PvmAika) VALUES (6, 2,'Iida','Särkylääkkeet','2011-05-03 06:05:04');
+INSERT INTO Keskustelunavaus (KeskusteluId, AiheId, Tunnus,Otsikko,PvmAika) VALUES (7, 3,'Vaivainen','Oireet','2011-07-30 18:05:06');
+INSERT INTO Keskustelunavaus (KeskusteluId, AiheId, Tunnus,Otsikko,PvmAika) VALUES (8, 3,'Ihmettelen','Sisäilmaongelmat koulussa','2011-11-01 17:00:07');
+INSERT INTO Keskustelunavaus (KeskusteluId, AiheId, Tunnus,Otsikko,PvmAika) VALUES (9, 3,'Marjaana','Sisäilman kemikaalit ym.','2011-12-01 14:50:37');
+INSERT INTO Keskustelunavaus (KeskusteluId, AiheId, Tunnus,Otsikko,PvmAika) VALUES (10, 3,'Juuso','mikrobeista ja bakteereista','2012-01-17 20:00:34');
+INSERT INTO Keskustelunavaus (KeskusteluId, AiheId, Tunnus,Otsikko,PvmAika) VALUES (11, 3,'Richard','Asbesti','2012-05-14 11:09:14');
+INSERT INTO Keskustelunavaus (KeskusteluId, AiheId, Tunnus,Otsikko,PvmAika) VALUES (12, 3,'Aamu','Hyvä imuri astmaatikolle','2012-06-10 12:19:54');
+INSERT INTO Keskustelunavaus (KeskusteluId, AiheId, Tunnus,Otsikko,PvmAika) VALUES (13, 3,'Usko','Sisäilmatutkimukset','2012-10-10 05:04:50');
+INSERT INTO Keskustelunavaus (KeskusteluId, AiheId, Tunnus,Otsikko,PvmAika) VALUES (14, 4,'Miisa','Lapsen infektioastma','2012-12-05 14:18:11');
+INSERT INTO Keskustelunavaus (KeskusteluId, AiheId, Tunnus,Otsikko,PvmAika) VALUES (15, 4,'Äippä','Astman oireina päänsärky ja väsymys?','2013-01-08 16:08:12');
+
