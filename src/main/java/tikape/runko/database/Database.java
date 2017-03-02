@@ -63,7 +63,7 @@ public class Database {
         // tietokantataulujen luomiseen tarvittavat komennot suoritusjärjestyksessä
         lista.add("DROP TABLE Aihe;");
         lista.add("DROP TABLE Keskustelunavaus;");
-        lista.add("DROP TABLE Kayttaja;");
+     //   lista.add("DROP TABLE Kayttaja;");
         lista.add("DROP TABLE Viesti;");        
         // heroku käyttää SERIAL-avainsanaa uuden tunnuksen automaattiseen luomiseen
         lista.add("CREATE TABLE Aihe (AiheId SERIAL PRIMARY KEY NOT NULL, Aihe varchar(20) NOT NULL, Kuvaus varchar(50), PvmAika varchar(50));");
