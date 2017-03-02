@@ -34,8 +34,9 @@ public class ViestiDao implements Dao<Viesti, Integer> {
         Integer KeskusteluId = rs.getInt("KeskusteluId");
         String Sisalto = rs.getString("Sisalto");
         String PvmAika = rs.getString("PvmAika");
+        Integer Lkm = rs.getInt("Lkm");
 
-        Viesti o = new Viesti(ViestiId, AiheId, Tunnus, KeskusteluId, Sisalto, PvmAika);
+        Viesti o = new Viesti(ViestiId, AiheId, Tunnus, KeskusteluId, Sisalto, PvmAika, Lkm);
 
         rs.close();
         stmt.close();
@@ -59,8 +60,9 @@ public class ViestiDao implements Dao<Viesti, Integer> {
             Integer KeskusteluId = rs.getInt("KeskusteluId");
             String Sisalto = rs.getString("Sisalto");
             String PvmAika = rs.getString("PvmAika");
+            Integer Lkm = rs.getInt("Lkm");
 
-            viestit.add(new Viesti(ViestiId, AiheId, Tunnus, KeskusteluId, Sisalto, PvmAika));
+            viestit.add(new Viesti(ViestiId, AiheId, Tunnus, KeskusteluId, Sisalto, PvmAika, Lkm));
         }
 
         rs.close();
@@ -87,8 +89,9 @@ public class ViestiDao implements Dao<Viesti, Integer> {
             Integer KeskusteluId = rs.getInt("KeskusteluId");
             String Sisalto = rs.getString("Sisalto");
             String PvmAika = rs.getString("PvmAika");
+            Integer Lkm = rs.getInt("Lkm");
 
-            avaus.add(new Viesti(ViestiId, AiheId, Tunnus, KeskusteluId, Sisalto, PvmAika));
+            avaus.add(new Viesti(ViestiId, AiheId, Tunnus, KeskusteluId, Sisalto, PvmAika, Lkm));
         }
 
         rs.close();
@@ -97,13 +100,13 @@ public class ViestiDao implements Dao<Viesti, Integer> {
 
         return avaus;
     }
-    
-   public int CountAll(Integer key1, Integer key2) throws SQLException {
+
+    public int CountAll(Integer key1, Integer key2) throws SQLException {
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(ViestiId) AS arvo FROM Viesti WHERE AiheId = ? AND KeskusteluId = ?");
         stmt.setObject(1, key1);
         stmt.setObject(2, key2);
-        
+
         ResultSet rs = stmt.executeQuery();
         Integer id = rs.getInt("arvo");
 
@@ -114,12 +117,12 @@ public class ViestiDao implements Dao<Viesti, Integer> {
         return id;
     }
 
-      public String selectDate(Integer key1, Integer key2) throws SQLException {
+    public String selectDate(Integer key1, Integer key2) throws SQLException {
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("SELECT PvmAika AS arvo FROM Viesti WHERE AiheId = ? AND KeskusteluId = ? ORDER BY PvmAika DESC LIMIT 1");
         stmt.setObject(1, key1);
         stmt.setObject(2, key2);
-        
+
         ResultSet rs = stmt.executeQuery();
         String id = rs.getString("arvo");
 
@@ -133,13 +136,13 @@ public class ViestiDao implements Dao<Viesti, Integer> {
     @Override
     public void AddOne(Viesti avaus) throws SQLException {
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("INSERT INTO Viesti (ViestiId, AiheId, Tunnus, KeskusteluId, Sisalto, PvmAika) VALUES (?,?,?,?,?,datetime('now','localtime'))");
+        PreparedStatement stmt = connection.prepareStatement("INSERT INTO Viesti (ViestiId, AiheId, Tunnus, KeskusteluId, Sisalto, PvmAika, Lkm) VALUES (?,?,?,?,?,datetime('now','localtime'),?)");
         stmt.setInt(1, avaus.getViestiId());
         stmt.setInt(2, avaus.getAiheId());
         stmt.setString(3, avaus.getTunnus());
-        stmt.setInt(4, avaus.getKeskusteluId());       
+        stmt.setInt(4, avaus.getKeskusteluId());
         stmt.setString(5, avaus.getSisalto());
-      //  stmt.setString(6, avaus.getPvmAika());
+        //  stmt.setString(6, avaus.getPvmAika());
 
         stmt.execute();
         stmt.close();
@@ -150,7 +153,7 @@ public class ViestiDao implements Dao<Viesti, Integer> {
     public int selectId() throws SQLException {
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(ViestiId) AS arvo FROM Viesti");
-        
+
         ResultSet rs = stmt.executeQuery();
         Integer id = rs.getInt("arvo");
 
@@ -165,8 +168,5 @@ public class ViestiDao implements Dao<Viesti, Integer> {
     public void delete(Integer key) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-
-
 
 }

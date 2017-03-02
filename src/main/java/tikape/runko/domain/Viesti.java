@@ -10,14 +10,16 @@ public class Viesti {
     private Integer KeskusteluId;
     private String Sisalto;
     private String PvmAika;
+    private Integer Lkm;    
 
-    public Viesti(Integer ViestiId, Integer AiheId, String Tunnus, Integer KeskusteluId, String Sisalto, String PvmAika) {
+    public Viesti(Integer ViestiId, Integer AiheId, String Tunnus, Integer KeskusteluId, String Sisalto, String PvmAika, Integer Lkm) {
         this.ViestiId = ViestiId;
         this.AiheId = AiheId;
         this.Tunnus = Tunnus;
         this.KeskusteluId = KeskusteluId;
         this.Sisalto = Sisalto;
         this.PvmAika = PvmAika;
+        this.Lkm=Lkm;
     }
 
     public Integer getViestiId() {
@@ -43,6 +45,10 @@ public class Viesti {
     public String getPvmAika() {
         return PvmAika;
     }
+    
+     public Integer getLkm() {
+        return Lkm;
+    }   
 
     public void setViestiId(Integer ViestiId) {
         this.ViestiId = ViestiId;
@@ -67,4 +73,8 @@ public class Viesti {
     public void setPvmAika(String PvmAika) {
         this.PvmAika = PvmAika;
     }
+    
+    public void setLkm(Integer Lkm) {
+        this.Lkm = Lkm;
+    }    
 }

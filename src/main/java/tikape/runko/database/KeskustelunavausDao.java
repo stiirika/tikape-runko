@@ -32,8 +32,9 @@ public class KeskustelunavausDao implements Dao<Keskustelunavaus, Integer> {
         String Tunnus = rs.getString("Tunnus");
         String Otsikko = rs.getString("Otsikko");
         String PvmAika = rs.getString("PvmAika");
+        Integer Lkm = rs.getInt("Lkm");
 
-        Keskustelunavaus o = new Keskustelunavaus(KeskusteluId, AiheId, Tunnus, Otsikko, PvmAika);
+        Keskustelunavaus o = new Keskustelunavaus(KeskusteluId, AiheId, Tunnus, Otsikko, PvmAika, Lkm);
 
         rs.close();
         stmt.close();
@@ -57,8 +58,9 @@ public class KeskustelunavausDao implements Dao<Keskustelunavaus, Integer> {
             String Tunnus = rs.getString("Tunnus");
             String Otsikko = rs.getString("Otsikko");
             String PvmAika = rs.getString("PvmAika");
+            Integer Lkm = rs.getInt("Lkm");
 
-            avaus.add(new Keskustelunavaus(KeskusteluId, AiheId, Tunnus, Otsikko, PvmAika));
+            avaus.add(new Keskustelunavaus(KeskusteluId, AiheId, Tunnus, Otsikko, PvmAika, Lkm));
         }
 
         rs.close();
@@ -76,12 +78,12 @@ public class KeskustelunavausDao implements Dao<Keskustelunavaus, Integer> {
     @Override
     public void AddOne(Keskustelunavaus avaus) throws SQLException {
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("INSERT INTO Keskustelunavaus (KeskusteluId, AiheId, Tunnus, Otsikko, PvmAika) VALUES (?,?,?,?,datetime('now','localtime'))");
+        PreparedStatement stmt = connection.prepareStatement("INSERT INTO Keskustelunavaus (KeskusteluId, AiheId, Tunnus, Otsikko, PvmAika, Lkm) VALUES (?,?,?,?,datetime('now','localtime'),?)");
         stmt.setInt(1, avaus.getKeskusteluId());
         stmt.setInt(2, avaus.getAiheId());
         stmt.setString(3, avaus.getTunnus());
         stmt.setString(4, avaus.getOtsikko());
-    //    stmt.setString(5, avaus.getPvmAika());
+        //    stmt.setString(5, avaus.getPvmAika());
 
         stmt.execute();
         stmt.close();
@@ -93,7 +95,7 @@ public class KeskustelunavausDao implements Dao<Keskustelunavaus, Integer> {
     public int selectId() throws SQLException {
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(KeskusteluId) AS arvo FROM Keskustelunavaus");
-        
+
         ResultSet rs = stmt.executeQuery();
         Integer id = rs.getInt("arvo");
 

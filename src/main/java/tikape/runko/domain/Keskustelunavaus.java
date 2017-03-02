@@ -9,13 +9,15 @@ public class Keskustelunavaus {
     private String Tunnus;
     private String Otsikko;
     private String PvmAika;
+    private Integer Lkm;
 
-    public Keskustelunavaus(Integer KeskusteluId, Integer AiheId, String Tunnus, String Otsikko, String PvmAika) {
+    public Keskustelunavaus(Integer KeskusteluId, Integer AiheId, String Tunnus, String Otsikko, String PvmAika, Integer Lkm) {
         this.KeskusteluId = KeskusteluId;
         this.AiheId = AiheId;
         this.Tunnus = Tunnus;
         this.Otsikko = Otsikko;
         this.PvmAika = PvmAika;
+        this.Lkm = Lkm;
     }
 
     public Integer getKeskusteluId() {
@@ -38,6 +40,10 @@ public class Keskustelunavaus {
         return PvmAika;
     }
 
+    public Integer getLkm() {
+        return Lkm;
+    }
+
     public void setKeskusteluId(Integer KeskusteluId) {
         this.KeskusteluId = KeskusteluId;
     }
@@ -57,4 +63,9 @@ public class Keskustelunavaus {
     public void setPvmAika(String PvmAika) {
         this.PvmAika = PvmAika;
     }
+
+    public void setLkm(Integer Lkm) {
+        this.Lkm = Lkm;
+    }
+
 }

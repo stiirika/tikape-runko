@@ -56,8 +56,8 @@ public class Main {
             int row2 = viesti.selectId() + 1;
 
             if (!otsikko.isEmpty() && !sisalto.isEmpty() && !tunnus.isEmpty()) {
-                keskustelunavaus.AddOne(new Keskustelunavaus(row1, aihe, tunnus, otsikko, ""));
-                viesti.AddOne(new Viesti(row2, aihe, tunnus, row1, sisalto, ""));
+                keskustelunavaus.AddOne(new Keskustelunavaus(row1, aihe, tunnus, otsikko,"",0));
+                viesti.AddOne(new Viesti(row2, aihe, tunnus, row1, sisalto,"",0));
             }
 
             res.redirect("/aihe/" + aihe);
@@ -86,7 +86,7 @@ public class Main {
             int row = viesti.selectId() + 1;
 
             if (!sisalto.isEmpty() && !tunnus.isEmpty()) {
-                viesti.AddOne(new Viesti(row, aihe, tunnus, keskustelunavaus, sisalto, ""));
+                viesti.AddOne(new Viesti(row, aihe, tunnus, keskustelunavaus, sisalto,"",0));
             }
 
             res.redirect("/avaus/" + aihe + "/" + keskustelunavaus);
