@@ -66,11 +66,11 @@ public class Database {
         //   lista.add("DROP TABLE Kayttaja;");
         lista.add("DROP TABLE Viesti;");
         // heroku käyttää SERIAL-avainsanaa uuden tunnuksen automaattiseen luomiseen
-        lista.add("CREATE TABLE Aihe (AiheId SERIAL PRIMARY KEY NOT NULL, Aihe varchar(20) NOT NULL, Kuvaus varchar(50), PvmAika varchar(50));");
-        lista.add("INSERT INTO Aihe (AiheId, Aihe, Kuvaus,PvmAika) VALUES (1,'Astma ja hoidot','Astmaan liittyviä hoitoja','2009-10-02 16:52:30');");
-        lista.add("INSERT INTO Aihe (AiheId, Aihe, Kuvaus,PvmAika) VALUES (2,'Lapset ja astma','Lasten astmaan liittyvät oireet ja hoidot','2010-01-02 12:06:30');");
-        lista.add("INSERT INTO Aihe (AiheId, Aihe, Kuvaus,PvmAika) VALUES (3,'Sisäilmaongelmat','Sisäilmaongelmien yhteys astmaan','2010-07-18 09:10:35');");
-        lista.add("INSERT INTO Aihe (AiheId, Aihe, Kuvaus,PvmAika) VALUES (4, 'Astma ja lääkkeet','Astman hoitoon käytettävät lääkkeet','2010-11-30 19:10:00');");
+        lista.add("CREATE TABLE Aihe (AiheId SERIAL PRIMARY KEY NOT NULL, Aihe varchar(20) NOT NULL, Kuvaus varchar(50), PvmAika varchar(50),Lkm integer);");
+        lista.add("INSERT INTO Aihe (AiheId, Aihe, Kuvaus,PvmAika,Lkm) VALUES (1,'Astma ja hoidot','Astmaan liittyviä hoitoja','2009-10-02 16:52:30',0);");
+        lista.add("INSERT INTO Aihe (AiheId, Aihe, Kuvaus,PvmAika,Lkm) VALUES (2,'Lapset ja astma','Lasten astmaan liittyvät oireet ja hoidot','2010-01-02 12:06:30',0);");
+        lista.add("INSERT INTO Aihe (AiheId, Aihe, Kuvaus,PvmAika,Lkm) VALUES (3,'Sisäilmaongelmat','Sisäilmaongelmien yhteys astmaan','2010-07-18 09:10:35',0);");
+        lista.add("INSERT INTO Aihe (AiheId, Aihe, Kuvaus,PvmAika,Lkm) VALUES (4, 'Astma ja lääkkeet','Astman hoitoon käytettävät lääkkeet','2010-11-30 19:10:00',0);");
 
         lista.add("CREATE TABLE Keskustelunavaus (KeskusteluId SERIAL PRIMARY KEY, AiheId integer, Tunnus varchar(30), Otsikko varchar(50), PvmAika varchar(50) NOT NULL, Lkm integer, FOREIGN KEY(AiheId) REFERENCES Aihe(AiheId),FOREIGN KEY(Tunnus) REFERENCES Kayttaja(Tunnus));");
         lista.add("INSERT INTO Keskustelunavaus (KeskusteluId, AiheId, Tunnus,Otsikko,PvmAika,Lkm) VALUES (1, 1,'Anna','Astmaan vaihtoehtoista hoitoa','2009-11-12 20:52:30',0);");
@@ -149,17 +149,16 @@ public class Database {
     private List<String> sqliteLauseet() {
         ArrayList<String> lista = new ArrayList<>();
 
-       // lista.add("DROP TABLE Aihe;");
-       // lista.add("DROP TABLE Keskustelunavaus;");
+        lista.add("DROP TABLE Aihe;");
+        lista.add("DROP TABLE Keskustelunavaus;");
         //   lista.add("DROP TABLE Kayttaja;");
-       // lista.add("DROP TABLE Viesti;");
-
+        lista.add("DROP TABLE Viesti;");
         // tietokantataulujen luomiseen tarvittavat komennot suoritusjärjestyksessä
-        lista.add("CREATE TABLE Aihe (AiheId integer PRIMARY KEY NOT NULL, Aihe varchar(20) NOT NULL, Kuvaus varchar(50), PvmAika varchar(50));");
-        lista.add("INSERT INTO Aihe (AiheId, Aihe, Kuvaus,PvmAika) VALUES (1,'Astma ja hoidot','Astmaan liittyviä hoitoja','2009-10-02 16:52:30');");
-        lista.add("INSERT INTO Aihe (AiheId, Aihe, Kuvaus,PvmAika) VALUES (2,'Lapset ja astma','Lasten astmaan liittyvät oireet ja hoidot','2010-01-02 12:06:30');");
-        lista.add("INSERT INTO Aihe (AiheId, Aihe, Kuvaus,PvmAika) VALUES (3,'Sisäilmaongelmat','Sisäilmaongelmien yhteys astmaan','2010-07-18 09:10:35');");
-        lista.add("INSERT INTO Aihe (AiheId, Aihe, Kuvaus,PvmAika) VALUES (4, 'Astma ja lääkkeet','Astman hoitoon käytettävät lääkkeet','2010-11-30 19:10:00');");
+        lista.add("CREATE TABLE Aihe (AiheId integer PRIMARY KEY NOT NULL, Aihe varchar(20) NOT NULL, Kuvaus varchar(50), PvmAika varchar(50),Lkm integer);");
+        lista.add("INSERT INTO Aihe (AiheId, Aihe, Kuvaus,PvmAika,Lkm) VALUES (1,'Astma ja hoidot','Astmaan liittyviä hoitoja','2009-10-02 16:52:30',0);");
+        lista.add("INSERT INTO Aihe (AiheId, Aihe, Kuvaus,PvmAika,Lkm) VALUES (2,'Lapset ja astma','Lasten astmaan liittyvät oireet ja hoidot','2010-01-02 12:06:30',0);");
+        lista.add("INSERT INTO Aihe (AiheId, Aihe, Kuvaus,PvmAika,Lkm) VALUES (3,'Sisäilmaongelmat','Sisäilmaongelmien yhteys astmaan','2010-07-18 09:10:35',0);");
+        lista.add("INSERT INTO Aihe (AiheId, Aihe, Kuvaus,PvmAika,Lkm) VALUES (4, 'Astma ja lääkkeet','Astman hoitoon käytettävät lääkkeet','2010-11-30 19:10:00',0);");
 
         lista.add("CREATE TABLE Keskustelunavaus (KeskusteluId integer PRIMARY KEY, AiheId integer, Tunnus varchar(30), Otsikko varchar(50), PvmAika varchar(50) NOT NULL, Lkm integer, FOREIGN KEY(AiheId) REFERENCES Aihe(AiheId),FOREIGN KEY(Tunnus) REFERENCES Kayttaja(Tunnus));");
         lista.add("INSERT INTO Keskustelunavaus (KeskusteluId, AiheId, Tunnus,Otsikko,PvmAika,Lkm) VALUES (1, 1,'Anna','Astmaan vaihtoehtoista hoitoa','2009-11-12 20:52:30',0);");

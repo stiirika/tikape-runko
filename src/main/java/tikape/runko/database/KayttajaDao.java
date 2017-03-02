@@ -74,11 +74,6 @@ public class KayttajaDao implements Dao<Kayttaja, Integer> {
         return kayttajat;
     }
 
-    @Override
-    public void delete(Integer key) throws SQLException {
-        // ei toteutettu
-    }
-
 
 
     @Override
@@ -117,6 +112,11 @@ public class KayttajaDao implements Dao<Kayttaja, Integer> {
 
     @Override
     public String selectDate(Integer key1, Integer key2) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update(Integer key1, Integer key2) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -13,7 +13,7 @@
             Keskustelua voivat lukea kaikki.</span>
         <ol>
             <li th:each="alkio: ${aiheet}">
-                <a th:href="@{~/aihe/{id}(id=${alkio.AiheId})}" th:text="${alkio.Aihe}">name</a> <span th:text="${alkio.PvmAika}">aika</span>
+                <a th:href="@{~/aihe/{id}(id=${alkio.AiheId})}" th:text="${alkio.Aihe}">name</a> Viestien lukumäärä: <span style="color:red;" th:text="${alkio.Lkm}">lkm</span> Aihe lisätty:<span th:text="${alkio.PvmAika}">aika</span>
             </li>
         </ol>         
 

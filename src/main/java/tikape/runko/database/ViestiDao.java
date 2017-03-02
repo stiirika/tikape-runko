@@ -165,7 +165,7 @@ public class ViestiDao implements Dao<Viesti, Integer> {
     }
 
     @Override
-    public void delete(Integer key) throws SQLException {
+    public void update(Integer key1, Integer key2) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -71,11 +71,6 @@ public class KeskustelunavausDao implements Dao<Keskustelunavaus, Integer> {
     }
 
     @Override
-    public void delete(Integer key) throws SQLException {
-        // ei toteutettu
-    }
-
-    @Override
     public void AddOne(Keskustelunavaus avaus) throws SQLException {
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("INSERT INTO Keskustelunavaus (KeskusteluId, AiheId, Tunnus, Otsikko, PvmAika, Lkm) VALUES (?,?,?,?,datetime('now','localtime'),?)");
@@ -107,12 +102,34 @@ public class KeskustelunavausDao implements Dao<Keskustelunavaus, Integer> {
     }
 
     @Override
-    public List<Keskustelunavaus> findAll() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void update(Integer key1, Integer key2) throws SQLException {
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("UPDATE Keskustelunavaus SET Lkm = ? WHERE KeskusteluID = ?");
+        stmt.setObject(1, key1);
+        stmt.setObject(2, key2);
+
+        stmt.execute();
+        stmt.close();
+        connection.close();
+    }
+    
+        public int CountAll(Integer key1, Integer key2) throws SQLException {
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(KeskusteluId) AS arvo FROM Keskustelunavaus WHERE AiheId = ?");
+        stmt.setObject(1, key1);
+
+        ResultSet rs = stmt.executeQuery();
+        Integer id = rs.getInt("arvo");
+
+        rs.close();
+        stmt.close();
+        connection.close();
+
+        return id;
     }
 
     @Override
-    public int CountAll(Integer key1, Integer key2) throws SQLException {
+    public List<Keskustelunavaus> findAll() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

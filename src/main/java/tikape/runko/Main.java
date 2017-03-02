@@ -34,11 +34,15 @@ public class Main {
         Database database = new Database(jdbcOsoite);
 
         // Database database = new Database("jdbc:sqlite:sovellus.db");
-       // database.init();
-
+        // database.init();
         get("/", (req, res) -> {
             HashMap map = new HashMap<>();
             AiheDao AiheDao = new AiheDao(database);
+            KeskustelunavausDao keskustelunavaus = new KeskustelunavausDao(database);
+            for (Aihe aihe : AiheDao.findAll()) {
+                AiheDao.update(keskustelunavaus.CountAll(aihe.getAiheId(), 0), aihe.getAiheId());
+            }
+
             map.put("aiheet", AiheDao.findAll());
 
             return new ModelAndView(map, "aihe");
@@ -56,8 +60,8 @@ public class Main {
             int row2 = viesti.selectId() + 1;
 
             if (!otsikko.isEmpty() && !sisalto.isEmpty() && !tunnus.isEmpty()) {
-                keskustelunavaus.AddOne(new Keskustelunavaus(row1, aihe, tunnus, otsikko,"",0));
-                viesti.AddOne(new Viesti(row2, aihe, tunnus, row1, sisalto,"",0));
+                keskustelunavaus.AddOne(new Keskustelunavaus(row1, aihe, tunnus, otsikko, "", 0));
+                viesti.AddOne(new Viesti(row2, aihe, tunnus, row1, sisalto, "", 0));
             }
 
             res.redirect("/aihe/" + aihe);
@@ -69,6 +73,10 @@ public class Main {
             HashMap map = new HashMap<>();
             KeskustelunavausDao keskustelunavaus = new KeskustelunavausDao(database);
             ViestiDao viesti = new ViestiDao(database);
+
+            for (Keskustelunavaus avaus : keskustelunavaus.findAll(Integer.parseInt(req.params(":id")))) {
+                keskustelunavaus.update(viesti.CountAll(Integer.parseInt(req.params(":id")), avaus.getKeskusteluId()), avaus.getKeskusteluId());
+            }
             map.put("keskustelunavaus", keskustelunavaus.findAll(Integer.parseInt(req.params(":id"))));
 
             // Tulee vielä tehdä lukumäärien ja viimeisempien viestien laskeminen
@@ -86,7 +94,7 @@ public class Main {
             int row = viesti.selectId() + 1;
 
             if (!sisalto.isEmpty() && !tunnus.isEmpty()) {
-                viesti.AddOne(new Viesti(row, aihe, tunnus, keskustelunavaus, sisalto,"",0));
+                viesti.AddOne(new Viesti(row, aihe, tunnus, keskustelunavaus, sisalto, "", 0));
             }
 
             res.redirect("/avaus/" + aihe + "/" + keskustelunavaus);

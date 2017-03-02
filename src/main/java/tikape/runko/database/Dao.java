@@ -9,7 +9,7 @@ public interface Dao<T, K> {
 
     List<T> findAll() throws SQLException;
 
-    void delete(K key) throws SQLException;
+    void update(K key1, K key2) throws SQLException;
 
     int selectId() throws SQLException;
     

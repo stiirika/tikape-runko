@@ -8,12 +8,14 @@ public class Aihe {
     private String Aihe;
     private String Kuvaus;
     private String PvmAika;
+    private Integer Lkm;
 
-    public Aihe(Integer AiheId, String Aihe, String Kuvaus, String PvmAika) {
+    public Aihe(Integer AiheId, String Aihe, String Kuvaus, String PvmAika, Integer Lkm) {
         this.AiheId = AiheId;
         this.Aihe = Aihe;
         this.Kuvaus = Kuvaus;
         this.PvmAika = PvmAika;
+        this.Lkm = Lkm;
     }
 
     public Integer getAiheId() {
@@ -32,6 +34,10 @@ public class Aihe {
         return PvmAika;
     }
 
+    public Integer getLkm() {
+        return Lkm;
+    }
+
     public void setAiheId(Integer AiheId) {
         this.AiheId = AiheId;
     }
@@ -48,5 +54,8 @@ public class Aihe {
         this.PvmAika = PvmAika;
     }
 
-    
+    public void setLkm(Integer Lkm) {
+        this.Lkm = Lkm;
+    }
+
 }
