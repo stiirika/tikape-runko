@@ -66,13 +66,13 @@ public class Database {
         lista.add("DROP TABLE Kayttaja;");
         lista.add("DROP TABLE Viesti;");        
         // heroku käyttää SERIAL-avainsanaa uuden tunnuksen automaattiseen luomiseen
-        lista.add("CREATE TABLE Aihe (AiheId integer PRIMARY KEY NOT NULL, Aihe varchar(20) NOT NULL, Kuvaus varchar(50), PvmAika varchar(50));");
+        lista.add("CREATE TABLE Aihe (AiheId SERIAL PRIMARY KEY NOT NULL, Aihe varchar(20) NOT NULL, Kuvaus varchar(50), PvmAika varchar(50));");
         lista.add("INSERT INTO Aihe (AiheId, Aihe, Kuvaus,PvmAika) VALUES (1,'Astma ja hoidot','Astmaan liittyviä hoitoja','2009-10-02 16:52:30');");
         lista.add("INSERT INTO Aihe (AiheId, Aihe, Kuvaus,PvmAika) VALUES (2,'Lapset ja astma','Lasten astmaan liittyvät oireet ja hoidot','2010-01-02 12:06:30');");
         lista.add("INSERT INTO Aihe (AiheId, Aihe, Kuvaus,PvmAika) VALUES (3,'Sisäilmaongelmat','Sisäilmaongelmien yhteys astmaan','2010-07-18 09:10:35');");
         lista.add("INSERT INTO Aihe (AiheId, Aihe, Kuvaus,PvmAika) VALUES (4, 'Astma ja lääkkeet','Astman hoitoon käytettävät lääkkeet','2010-11-30 19:10:00');");
 
-        lista.add("CREATE TABLE Keskustelunavaus (KeskusteluId integer PRIMARY KEY, AiheId integer, Tunnus varchar(30), Otsikko varchar(50), PvmAika varchar(50) NOT NULL, FOREIGN KEY(AiheId) REFERENCES Aihe(AiheId),FOREIGN KEY(Tunnus) REFERENCES Kayttaja(Tunnus));");
+        lista.add("CREATE TABLE Keskustelunavaus (KeskusteluId SERIAL PRIMARY KEY, AiheId integer, Tunnus varchar(30), Otsikko varchar(50), PvmAika varchar(50) NOT NULL, FOREIGN KEY(AiheId) REFERENCES Aihe(AiheId),FOREIGN KEY(Tunnus) REFERENCES Kayttaja(Tunnus));");
         lista.add("INSERT INTO Keskustelunavaus (KeskusteluId, AiheId, Tunnus,Otsikko,PvmAika) VALUES (1, 1,'Anna','Astmaan vaihtoehtoista hoitoa','2009-11-12 20:52:30');");
         lista.add("INSERT INTO Keskustelunavaus (KeskusteluId, AiheId, Tunnus,Otsikko,PvmAika) VALUES (2, 1,'Maarit','Suolahoidot','2010-03-28 23:54:10');");
         lista.add("INSERT INTO Keskustelunavaus (KeskusteluId, AiheId, Tunnus,Otsikko,PvmAika) VALUES (3, 1,'Minna','Vaihtoehtohoitoja astman hoitoon','2010-04-14 20:38:19');");
@@ -89,7 +89,7 @@ public class Database {
         lista.add("INSERT INTO Keskustelunavaus (KeskusteluId, AiheId, Tunnus,Otsikko,PvmAika) VALUES (14, 4,'Miisa','Lapsen infektioastma','2012-12-05 14:18:11');");
         lista.add("INSERT INTO Keskustelunavaus (KeskusteluId, AiheId, Tunnus,Otsikko,PvmAika) VALUES (15, 4,'Äippä','Astman oireina päänsärky ja väsymys?','2013-01-08 16:08:12');");
 
-        lista.add("CREATE TABLE Viesti (ViestiId integer PRIMARY KEY NOT NULL, AiheId integer NOT NULL, Tunnus varchar(30) NOT NULL, KeskusteluId integer NOT NULL, Sisalto varchar(3000) NOT NULL, PvmAika varchar(50) NOT NULL, FOREIGN KEY(AiheId) REFERENCES Aihe(AiheId), FOREIGN KEY(Tunnus) REFERENCES Kayttaja(Tunnus), FOREIGN KEY(KeskusteluId) REFERENCES Keskustelunavaus(KeskusteluId));");
+        lista.add("CREATE TABLE Viesti (ViestiId SERIAL PRIMARY KEY NOT NULL, AiheId integer NOT NULL, Tunnus varchar(30) NOT NULL, KeskusteluId integer NOT NULL, Sisalto varchar(3000) NOT NULL, PvmAika varchar(50) NOT NULL, FOREIGN KEY(AiheId) REFERENCES Aihe(AiheId), FOREIGN KEY(Tunnus) REFERENCES Kayttaja(Tunnus), FOREIGN KEY(KeskusteluId) REFERENCES Keskustelunavaus(KeskusteluId));");
         lista.add("INSERT INTO Viesti (ViestiId, AiheId, Tunnus,KeskusteluId,Sisalto,PvmAika) VALUES (1, 1,'Anna',1,'Tietäisikö joku, miten hoitaa astmaa? En viitsisi käyttää lääkkeitä kun menee ääni ihan sököksi.','2009-11-12 20:52:30');");
         lista.add("INSERT INTO Viesti (ViestiId, AiheId, Tunnus,KeskusteluId,Sisalto,PvmAika) VALUES (2, 1,'Mikko',1,'Onneksi on olemassa monta vaihtoehtoa, ettei olla yhden vaihtoehdon varassa. Elimistön ravitseminen, ja hengitysilman ionisointi esimerkkeinä, huoneilman pesu, vuodevaatteiden tyhjiöpuhdistus jne.','2009-11-30 20:11:30');");
         lista.add("INSERT INTO Viesti (ViestiId, AiheId, Tunnus,KeskusteluId,Sisalto,PvmAika) VALUES (3, 1,'Aarne',1,'Varmaan olet jo vähentänyt altistumista epäpuhtauksille. Eli siivoat säännöllisesti kotisi ja olet saneerannut pölyä ja hometta keräävät tekstiilit, kasvit, eläimet ja muut materiaalit helkattiin. Varmaan pidät myös autosi puhtaana. Ainakin luonnonmukaisia hoitoja ovat, että et tupakoi, pidät painosi järkevissä rajoissa ja parannat hapenottokykyä harrastamalla säännöllisesti reipasta liikuntaa. Näillä voi vähentää lääkityksen tarvetta.','2010-01-10 20:14:18');");
